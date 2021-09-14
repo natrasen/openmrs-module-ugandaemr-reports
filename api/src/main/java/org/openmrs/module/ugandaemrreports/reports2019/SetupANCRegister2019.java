@@ -150,7 +150,7 @@ public class SetupANCRegister2019 extends UgandaEMRDataExportManager {
         //start adding columns here
         dsd.addColumn("Visit Date", sdd.getEncounterDate("Visit Date",new ANCEncounterDateCalculation()), "onDate=${endDate}", new CalculationResultDataConverter());
         dsd.addColumn("Serial No", sdd.definition("Serial No",  sdd.getConcept("1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
-        dsd.addColumn("Client No", sdd.definition("Client No",  sdd.getConcept("38460266-6bcd-47e8-844c-649d34323810")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
+        dsd.addColumn("Client No", sdd.definition("Client No",  sdd.getConcept("c7231d96-34d8-4bf7-a509-c810f75e3329")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("NIN", sdd.getNationalIDNumber(), "");
         dsd.addColumn("Name of Client", new PreferredNameDataDefinition(), (String) null);
         dsd.addColumn("Village", basePatientDataLibrary.getVillage(),(String)null);
@@ -197,7 +197,7 @@ public class SetupANCRegister2019 extends UgandaEMRDataExportManager {
         dsd.addColumn("Combined", sdd.definition("Combined", sdd.getConcept("d62eb8dd-81bd-4d52-9b22-d3226fe6f7ab")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("Misoprostol", sdd.definition("Misoprostol",sdd.getConcept("1743fc63-094c-412b-bcf9-793391102377")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
 
-        dsd.addColumn("EMTCT codesP", sdd.definition("EMTCT codesP", sdd.getConcept("62a37075-fc2a-4729-8950-b9fae9")), "onOrAfter=${startDate},onOrBefore=${endDate}", new EmctCodesDataConverter());
+        dsd.addColumn("EMTCT codesP", sdd.definition("EMTCT codesP", sdd.getConcept("62a37075-fc2a-4729-8950-b9fae9b22cfb")), "onOrAfter=${startDate},onOrBefore=${endDate}", new EmctCodesDataConverter());
         dsd.addColumn("Diagnosis", sdd.definition("Diagnosis", sdd.getConcept("1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("WHO", sdd.definition("WHO", sdd.getConcept("dcdff274-30ab-102d-86b0-7a5022ba4115")), "onOrAfter=${startDate},onOrBefore=${endDate}", new WHODataConverter());
         dsd.addColumn("CD4", sdd.getWHOCD4ViralLoadCalculation("dcbcba2c-30ab-102d-86b0-7a5022ba4115", "159376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"), "onDate=${endDate}", new CalculationResultDataConverter());
