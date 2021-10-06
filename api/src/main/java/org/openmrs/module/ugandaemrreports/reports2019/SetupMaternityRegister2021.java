@@ -39,7 +39,7 @@ import java.util.Properties;
  */
 
 @Component
-public class SetupMaternityRegister2019 extends UgandaEMRDataExportManager {
+public class SetupMaternityRegister2021 extends UgandaEMRDataExportManager {
 
 
 	@Autowired
@@ -50,44 +50,84 @@ public class SetupMaternityRegister2019 extends UgandaEMRDataExportManager {
 	@Autowired
 	BasePatientDataLibrary basePatientDataLibrary;
 
+	/**
+     * @return the uuid for the report design for exporting to Excel
+     */
+    @Override
+    public String getExcelDesignUuid() {
+        return "e13cfc98-2619-11ec-9e14-00ffcd58c42d";
+    }
 
-
-
-	@Override
-	public String getExcelDesignUuid() {
-		return "28ee759f-4da7-46f6-8fff-7e1ad795660e ";
-	}
-	
-	public String getCSVDesignUuid()
+    public String getCSVDesignUuid()
     {
-        return "e522b713-25b1-11ec-9e14-00ffcd58c42d";
+        return "ed484338-2619-11ec-9e14-00ffcd58c42d";
     }
 
 
-	@Override
-	public String getDescription() {
-		return "Integrated Maternity Register 2019";
-	}
+    @Override
+    public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
+        List<ReportDesign> l = new ArrayList<ReportDesign>();
+        l.add(buildReportDesign(reportDefinition));
+        l.add(buildExcelDesign(reportDefinition));
+        return l;
+    }
 
-	@Override
-	public String getName() {
-		return "Integrated Maternity Register 2019";
-	}
+    /**
+     * Build the report design for the specified report, this allows a user to override the report design by adding properties and other metadata to the report design
+     *
+     * @param reportDefinition
+     * @return The report design
+     */
 
-	@Override
-	public String getUuid() {
-		return "694cb788-c3d1-406a-be2d-65e322f71205";
-	}
+    @Override
+    public ReportDesign buildReportDesign(ReportDefinition reportDefinition) {
+        ReportDesign rd = createCSVDesign(getCSVDesignUuid(), reportDefinition);
+        return rd;
+    }
+    public ReportDesign buildExcelDesign(ReportDefinition reportDefinition) {
+        ReportDesign rd = createExcelTemplateDesign(getExcelDesignUuid(), reportDefinition, "MaternityRegister2021.xls");
+        Properties props = new Properties();
+        props.put("repeatingSections", "sheet:1,row:1-2,dataset:Maternity");
+        props.put("sortWeight", "5000");
+        rd.setProperties(props);
+        return rd;
+    }
 
-	@Override
-	public String getVersion() {
-		return "3.3.4";
-	}
+    @Override
+    public String getUuid() {
+        return "fd74a4e3-2619-11ec-9e14-00ffcd58c42d";
+    }
 
-	/**
-	 * @return the uuid for the report design for exporting to Excel
-	 */
+    @Override
+    public String getName() {
+        return "Intergrated Maternity Register 2021";
+    }
 
+    @Override
+    public String getDescription() {
+        return "It contains Maternity information";
+    }
+
+    @Override
+    public ReportDefinition constructReportDefinition() {
+        ReportDefinition rd = new ReportDefinition();
+
+        rd.setUuid(getUuid());
+        rd.setName(getName());
+        rd.setDescription(getDescription());
+        rd.addParameters(getParameters());
+        rd.addDataSetDefinition("Maternity", Mapped.mapStraightThrough(dataSetDefinition()));
+        return rd;
+    }
+
+    @Override
+    public String getVersion() {
+        return "3.0.6";
+    }
+
+
+
+	
 	@Override
 	public List<Parameter> getParameters() {
 		List<Parameter> l = new ArrayList<Parameter>();
@@ -97,59 +137,7 @@ public class SetupMaternityRegister2019 extends UgandaEMRDataExportManager {
 		return l;
 	}
 
-	@Override
-	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
-		List<ReportDesign> l = new ArrayList<ReportDesign>();
-		l.add(buildExcelDesign(reportDefinition));
-		l.add(buildReportDesign(reportDefinition));
-		//l.add(buildCSVDesign(reportDefinition));
-		return l;
-	}
-
-	/**
-	 * Build the report design for the specified report, this allows a user to override the report
-	 * design by adding properties and other metadata to the report design
-	 *
-	 * @param reportDefinition
-	 * @return The report design
-	 */
-	@Override
-    public ReportDesign buildReportDesign(ReportDefinition reportDefinition) {
-        ReportDesign rd = createCSVDesign(getCSVDesignUuid(), reportDefinition);
-        return rd;
-    }
-	public ReportDesign buildExcelDesign(ReportDefinition reportDefinition) {
-		ReportDesign rd = createExcelTemplateDesign(getExcelDesignUuid(), reportDefinition, "MaternityRegister2019.csv");
-		Properties props = new Properties();
-		props.put("repeatingSections", "sheet:1,row:1-2,dataset:Maternity");
-		props.put("sortWeight", "5000");
-		rd.setProperties(props);
-		return rd;
-	}
 	
-	/*public ReportDesign buildCSVDesign(ReportDefinition reportDefinition) {
-		ReportDesign rd = createCsvReportDesign(getExcelDesignUuid(), reportDefinition, "MaternityRegister2019.csv");
-		Properties props = new Properties();
-		props.put("repeatingSections", "sheet:1,row:1-2,dataset:Maternity");
-		props.put("sortWeight", "5000");
-		rd.setProperties(props);
-		return rd;
-	}*/
-
-	@Override
-	public ReportDefinition constructReportDefinition() {
-
-		ReportDefinition rd = new ReportDefinition();
-		rd.setUuid(getUuid());
-		rd.setName(getName());
-		rd.setDescription(getDescription());
-		rd.setParameters(getParameters());
-		rd.addDataSetDefinition("Maternity", Mapped.mapStraightThrough(dataSetDefinition()));
-		return rd;
-	}
-
-
-
 	private DataSetDefinition dataSetDefinition() {
 		PatientDataSetDefinition dsd = new PatientDataSetDefinition();
 		dsd.setName("Maternity");

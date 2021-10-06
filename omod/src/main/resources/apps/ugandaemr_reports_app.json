@@ -711,6 +711,38 @@
         "label": "HIVDR Tool Report",
         "url": "reportingui/runReport.page?reportDefinition=8c029f5e-4467-482c-9ca5-6c32982286dd",
         "order": 15
+      },
+      {
+        "id": "HMIS ART Register",
+        "extensionPointId": "org.openmrs.module.ugandaemr.reports.registers",
+        "type": "link",
+        "label": "HMIS ART Register",
+        "url": "reportingui/runReport.page?reportDefinition=196fe601-e0e2-4f20-8f67-267b0c6ae1d0",
+        "order": 15
+      },
+      {
+        "id": "HMIS CHC Register",
+        "extensionPointId": "org.openmrs.module.ugandaemr.reports.registers",
+        "type": "link",
+        "label": "HMIS Child Health Card Register",
+        "url": "reportingui/runReport.page?reportDefinition=8dd5f582-2412-11ec-9e14-00ffcd58c42d",
+        "order": 15
+      },
+      {
+        "id": "HMIS FP Register",
+        "extensionPointId": "org.openmrs.module.ugandaemr.reports.registers",
+        "type": "link",
+        "label": "HMIS FP Register",
+        "url": "reportingui/runReport.page?reportDefinition=97581b09-2438-11ec-9e14-00ffcd58c42d",
+        "order": 15
+      },
+      {
+        "id": "HMIS Maternity Register 2021",
+        "extensionPointId": "org.openmrs.module.ugandaemr.reports.registers",
+        "type": "link",
+        "label": "HMIS Maternity Register",
+        "url": "reportingui/runReport.page?reportDefinition=fd74a4e3-2619-11ec-9e14-00ffcd58c42d",
+        "order": 15
       }
     ]
   }

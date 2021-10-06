@@ -89,11 +89,11 @@ public abstract class UgandaEMRReportManager extends BaseReportManager {
 		log.debug("Resource path for " + templatePath + " is " + resourcePath);
 		return ReportManagerUtil.createJSONTemplateDesign(reportDesignUuid, reportDefinition, resourcePath);
 	}
-
+	
 	protected ReportDesign createExcelDesign(String reportDesignUuid, ReportDefinition reportDefinition) {
 		return UgandaEMRReportUtil.createExcelDesign(reportDesignUuid, reportDefinition);
 	}
-
+	
 	protected ReportDesign createCSVDesign(String reportDesignUuid, ReportDefinition reportDefinition) {
 		return UgandaEMRReportUtil.createCSVDesign(reportDesignUuid, reportDefinition);
 	}
