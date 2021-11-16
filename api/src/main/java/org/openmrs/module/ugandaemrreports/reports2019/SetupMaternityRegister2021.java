@@ -65,13 +65,21 @@ public class SetupMaternityRegister2021 extends UgandaEMRDataExportManager {
 
 
     @Override
-    public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
-        List<ReportDesign> l = new ArrayList<ReportDesign>();
-        l.add(buildReportDesign(reportDefinition));
-        l.add(buildExcelDesign(reportDefinition));
-        return l;
-    }
-
+	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
+		List<ReportDesign> l = new ArrayList<ReportDesign>();
+		l.add(buildReportDesign(reportDefinition));
+		l.add(buildExcelReportDesign(reportDefinition));
+		;
+		return l;
+	}
+	
+    
+    @Override
+	public ReportDesign buildReportDesign(ReportDefinition reportDefinition) {
+		ReportDesign rd = createCSVDesign(getExcelDesignUuid(), reportDefinition);
+		return rd;
+	}
+    	    
     /**
      * Build the report design for the specified report, this allows a user to override the report design by adding properties and other metadata to the report design
      *
@@ -79,19 +87,14 @@ public class SetupMaternityRegister2021 extends UgandaEMRDataExportManager {
      * @return The report design
      */
 
-    @Override
-    public ReportDesign buildReportDesign(ReportDefinition reportDefinition) {
-        ReportDesign rd = createCSVDesign(getCSVDesignUuid(), reportDefinition);
-        return rd;
-    }
-    public ReportDesign buildExcelDesign(ReportDefinition reportDefinition) {
-        ReportDesign rd = createExcelTemplateDesign(getExcelDesignUuid(), reportDefinition, "MaternityRegister2021.xls");
-        Properties props = new Properties();
-        props.put("repeatingSections", "sheet:1,row:1-2,dataset:Maternity");
-        props.put("sortWeight", "5000");
-        rd.setProperties(props);
-        return rd;
-    }
+    public ReportDesign buildExcelReportDesign(ReportDefinition reportDefinition) {
+		ReportDesign rd = createExcelTemplateDesign("6c14ddc3-26e2-11ec-9e14-00ffcd58c42d", reportDefinition, "MaternityRegister2021.xls");
+		Properties props = new Properties();
+		props.put("repeatingSections", "sheet:1,row:1-2,dataset:Maternity");
+		props.put("sortWeight", "5000");
+		rd.setProperties(props);
+		return rd;
+	}  
 
     @Override
     public String getUuid() {

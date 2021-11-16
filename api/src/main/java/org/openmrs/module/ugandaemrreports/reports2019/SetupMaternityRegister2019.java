@@ -119,7 +119,7 @@ public class SetupMaternityRegister2019 extends UgandaEMRDataExportManager {
         return rd;
     }
 	public ReportDesign buildExcelDesign(ReportDefinition reportDefinition) {
-		ReportDesign rd = createExcelTemplateDesign(getExcelDesignUuid(), reportDefinition, "MaternityRegister2019.csv");
+		ReportDesign rd = createExcelTemplateDesign(getExcelDesignUuid(), reportDefinition, "MaternityRegister2019.xls");
 		Properties props = new Properties();
 		props.put("repeatingSections", "sheet:1,row:1-2,dataset:Maternity");
 		props.put("sortWeight", "5000");

@@ -153,7 +153,7 @@ public class SetupARTRegister2019 extends UgandaEMRDataExportManager {
         //start adding columns here
         dsd.addColumn("ARTStartDate",hivPatientData.getArtStartDate(),(String)null);
         dsd.addColumn("Clinic number", hivPatientData.getClinicNumber(), (String) null);
-        dsd.addColumn("NIN", sdd.getNationalIDNumber(), "");
+        dsd.addColumn("NIN", sdd.getNationalIDNumber(), (String)null);
         dsd.addColumn("returnVisitDate",hivPatientData.getLastReturnDateByEndDate(),(String) null);
         dsd.addColumn("Name of Client", new PreferredNameDataDefinition(), (String) null);
         dsd.addColumn("Village", basePatientDataLibrary.getVillage(),(String)null);
@@ -165,7 +165,6 @@ public class SetupARTRegister2019 extends UgandaEMRDataExportManager {
         dsd.addColumn("Age", sdd.getAgeDataDefinition(10,200), "onDate=${endDate}", new CalculationResultDataConverter());
         dsd.addColumn("Age ART", hivPatientData.getAgeDuringPeriod(),(String)null);
         dsd.addColumn("ART start Date", sdd.definition("ART Start Date",  sdd.getConcept("ab505422-26d9-41f1-a079-c3d222000440")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
-        dsd.addColumn("ART Number", sdd.definition("ART Number",  sdd.getConcept("3c76abfd-5e2d-4194-b0d4-00b73c7fc1ac")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("Adv Disease Status", sdd.definition("Adv Disease Status",  sdd.getConcept("17def5f6-d6b4-444b-99ed-40eb05d2c4f8")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("WHO Clinical Stage", sdd.definition("WHO Clinical Stage",  sdd.getConcept("dcd034ed-30ab-102d-86b0-7a5022ba4115")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("Weight", sdd.definition("Weight",  sdd.getConcept("5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
@@ -173,8 +172,6 @@ public class SetupARTRegister2019 extends UgandaEMRDataExportManager {
         dsd.addColumn("MUAC", sdd.definition("MUAC",  sdd.getConcept("5f86d19d-9546-4466-89c0-6f80c101191b")), "onOrAfter=${startDate},onOrBefore=${endDate}", new MUACDataConverter());
         dsd.addColumn("CD4", sdd.getWHOCD4ViralLoadCalculation("dcbcba2c-30ab-102d-86b0-7a5022ba4115", "159376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"), "onDate=${endDate}", new CalculationResultDataConverter());
         dsd.addColumn("ViralLoad", sdd.definition("ViralLoad",  sdd.getConcept("dc8d83e3-30ab-102d-86b0-7a5022ba4115")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
-        dsd.addColumn("VL results", sdd.definition("VL results", sdd.getConcept("dca12261-30ab-102d-86b0-7a5022ba411")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
-        dsd.addColumn("VL Date Taken", sdd.definition("VL Date Taken", sdd.getConcept("0b434cfa-b11c-4d14-aaa2-9aed6ca2da88")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("VL Date", hivPatientData.getLastViralLoadDateByEndDate(),(String)null);
         dsd.addColumn("CrAg", sdd.definition("CrAg",  sdd.getConcept("43c33e93-90ff-406b-b7b2-9c655b2a561a")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("TB LAM", sdd.definition("TB LAM",  sdd.getConcept("066b84a0-e18f-4cdd-a0d7-189454f4c7a4")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
@@ -190,7 +187,7 @@ public class SetupARTRegister2019 extends UgandaEMRDataExportManager {
         dsd.addColumn("TB Start Date", sdd.definition("TB Start Date", sdd.getConcept("dce02eca-30ab-102d-86b0-7a5022ba4115")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("TB Stop Date", sdd.definition("TB Stop Date", sdd.getConcept("dd2adde2-30ab-102d-86b0-7a5022ba4115")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("EDD", sdd.definition("EDD", sdd.getConcept("5b110c7d-8031-4526-9724-f262d6e2733e")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
-        dsd.addColumn("ANC Number", sdd.definition("ANC Number", sdd.getConcept("b0cc255e-ef57-4266-839e-0df7f5099eb9")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
+        dsd.addColumn("ANC Number", sdd.definition("ANC Number", sdd.getConcept("c7231d96-34d8-4bf7-a509-c810f75e3329")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("EID", sdd.definition("EID", sdd.getConcept("2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("Art Adherence", sdd.definition("Art Adherence", sdd.getConcept("dce03b2f-30ab-102d-86b0-7a5022ba4115")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
         dsd.addColumn("Adherence Miss Reason", sdd.definition("Adherence Miss Reason", sdd.getConcept("dce045a4-30ab-102d-86b0-7a5022ba4115")), "onOrAfter=${startDate},onOrBefore=${endDate}", new ObsDataConverter());
